@@ -1,0 +1,47 @@
+#include<iostream>
+#include<string>
+using namespace std;
+//Abstract base class
+class Fmachine{
+	public:
+		virtual void getData()=0;//pure virtual
+		virtual void putData() const=0;//pure virtual
+		virtual~Fmachine() {} //virtual destructor
+};
+//derived class
+class Aeroplane : public Fmachine {
+	private:
+		int code;
+		string name;
+		int capacity;
+public:
+	void getData() override{
+	cout<<"enter aeroplane code: ";
+	cin>>code;
+	cin.ignore();
+	cout<<"enter aeroplane name: ";
+	getline(cin,name);
+	cout<<"enter capacity: ";
+	cin>>capacity;
+}
+    void putData() const override{
+	cout<<"\n--- Aeroplane Details---\n";
+	cout<<"code: "<<code<<endl;
+	cout<<"capacity: "<<capacity<<endl;
+}
+};
+int main(){
+	//dynamic memory allocation and binding 
+	Fmachine* ptr=new Aeroplane;
+	//virtual function call (dynamic binding)
+	ptr->getData();
+	ptr->putData();
+	//Free dynamically allocated memory
+	delete ptr;
+	return 0;
+}
+	
+	
+	
+	
+	
